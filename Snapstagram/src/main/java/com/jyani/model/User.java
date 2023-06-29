@@ -1,20 +1,17 @@
 package com.jyani.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jyani.enums.Role;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -49,15 +46,15 @@ public class User {
 
 	private String bio;
 
-	private Role role;
+	@Enumerated(EnumType.STRING)
+	private Role role = Role.USER;
 
 	private LocalDateTime timestamp = LocalDateTime.now();
 
-	@OneToMany(mappedBy = "following",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<User> followers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "follower",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<User> following = new ArrayList<>();
-
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<User> followers = new ArrayList<>();
+//
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<User> following = new ArrayList<>();
 
 }
