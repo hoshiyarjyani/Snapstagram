@@ -1,5 +1,6 @@
 package com.jyani.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,16 @@ public class UserServiceImpl implements UserService {
 			throw new UserException("User Already Exists with this Email Id. Try With New One");
 		}
 		return user;
+	}
+
+	@Override
+	public List<User> getAllUsers() throws UserException {
+		List<User> userList = userRepository.findAll();
+		if (userList.isEmpty()) {
+			throw new UserException("User Not Found in the database");
+		} else {
+			return userList;
+		}
 	}
 
 }

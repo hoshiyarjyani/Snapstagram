@@ -1,5 +1,7 @@
 package com.jyani.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,12 @@ public class UserController {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User savedUser = userService.createUser(user);
 		return new ResponseEntity<>(savedUser, HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getAllUsersHandler() {
+		List<User> userList = userService.getAllUsers();
+		return new ResponseEntity<>(userList, HttpStatus.OK);
 	}
 
 }

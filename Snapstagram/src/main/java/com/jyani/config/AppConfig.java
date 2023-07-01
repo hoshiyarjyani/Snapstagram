@@ -54,6 +54,7 @@ public class AppConfig {
 			
 			auth
 			.requestMatchers(HttpMethod.POST,"/users").permitAll()
+			.requestMatchers(HttpMethod.GET,"/users").permitAll()
 			.anyRequest().authenticated(); 
 			
 		})
