@@ -10,6 +10,8 @@ public interface UserService {
 	public User createUser(User user) throws UserException;
 	
 	public List<User> getAllUsers() throws UserException;
+
+	public User getUserDetailsByUsername(String name) throws UserException;
 	
 	
 }

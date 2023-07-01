@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public User getUserDetailsByUsername(String name) throws UserException {
+		return userRepository.findByUsername(name).orElseThrow(() -> new UserException("User Not found with Username: "+name));
+	}
+
 }
