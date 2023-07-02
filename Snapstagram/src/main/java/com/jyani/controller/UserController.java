@@ -45,6 +45,7 @@ public class UserController {
 	public ResponseEntity<User> createUserHandler(@RequestBody User user) {
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRole("ROLE_"+user.getRole().toUpperCase());
 		User savedUser = userService.createUser(user);
 		return new ResponseEntity<>(savedUser, HttpStatus.ACCEPTED);
 	}
